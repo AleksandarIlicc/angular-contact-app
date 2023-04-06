@@ -1,0 +1,75 @@
+.nav {
+  display: flex;
+  height: 8vh;
+  box-shadow: 0.1rem 0.1rem 0.7rem rgba(191, 190, 190, 0.3);
+
+  &__logo {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+
+    span {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: 0.075em;
+      margin-left: 1.2rem;
+    }
+  }
+
+  &__container {
+    flex: 6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & div:nth-child(1) {
+      display: flex;
+      align-items: center;
+      height: 3rem;
+      width: 30rem;
+      margin-left: 2rem;
+      min-width: 10rem;
+      background-color: #eee;
+      border-radius: 2rem;
+
+      .icon-search {
+        flex-basis: 10%;
+        margin-left: 0.7rem;
+        color: rgb(154, 154, 154);
+      }
+
+      input {
+        flex-basis: 90%;
+        height: 100%;
+        background-color: transparent;
+        padding-left: 1.2rem;
+        border: none;
+        outline: none;
+        border-top-right-radius: 2rem;
+        border-bottom-right-radius: 2rem;
+
+        &::placeholder {
+          color: rgb(145, 145, 145);
+        }
+      }
+    }
+
+    & div:nth-child(2) {
+      display: flex;
+      align-items: center;
+      margin-right: 2rem;
+
+      .icon-bell {
+        color: rgb(154, 154, 154);
+      }
+
+      img {
+        width: 3.5rem;
+        height: 3.5rem;
+        margin-left: 2rem;
+      }
+    }
+  }
+}

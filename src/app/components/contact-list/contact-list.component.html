@@ -1,0 +1,50 @@
+<ul class="contact__list">
+  <li *ngFor="let contact of contactsList" class="contact__item">
+    <div>
+      <img
+        [src]="contact.photo"
+        alt=""
+        [ngStyle]="{ width: '4rem', marginRight: '2rem' }"
+      />
+      <div>{{ contact.name }}</div>
+    </div>
+    <div>{{ contact.mobile }}</div>
+    <div>
+      {{
+        contact.email.length > 20
+          ? contact.email.substr(0, 20) + "..."
+          : contact.email
+      }}
+    </div>
+    <div>{{ contact.title }}</div>
+    <div>
+      <a
+        class="btn-contact btn-contact__edit"
+        routerLink="/edit/{{ contact.id }}"
+      >
+        <fa-icon
+          [icon]="icon.faPencilAlt"
+          [ngStyle]="{ color: 'rgb(154, 154, 154)' }"
+        ></fa-icon>
+        <span> Edit </span>
+      </a>
+      <a
+        class="btn-contact btn-contact__view"
+        routerLink="contact/{{ contact.id }}"
+      >
+        <fa-icon
+          [icon]="icon.faEye"
+          [ngStyle]="{ color: 'rgb(154, 154, 154)' }"
+        >
+        </fa-icon>
+      </a>
+    </div>
+    <a
+      class="btn-contact btn-contact__times"
+      (click)="deleteContact(contact.id)"
+    >
+      <fa-icon [icon]="icon.faTimes" [ngStyle]="{ color: 'rgb(255,255,255)' }">
+      </fa-icon>
+    </a>
+  </li>
+</ul>

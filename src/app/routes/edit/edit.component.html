@@ -1,0 +1,79 @@
+<section class="edit section">
+  <div *ngIf="loading; then spinner; else contactForm"></div>
+
+  <ng-template #spinner>
+    <app-spinner></app-spinner>
+  </ng-template>
+
+  <ng-template #contactForm>
+    <div class="edit__left">
+      <figure class="contact-img">
+        <img [src]="singleContact.photo" alt="contact image" />
+      </figure>
+      <form action="" (submit)="editContact()" class="form">
+        <div class="form__container">
+          <div>
+            <div class="input-box">
+              <label for="photo">Photo:</label>
+              <input
+                type="text"
+                name="photo"
+                [(ngModel)]="singleContact.photo"
+              />
+            </div>
+            <div class="input-box">
+              <label for="name">Name:</label>
+              <input type="text" name="name" [(ngModel)]="singleContact.name" />
+            </div>
+            <div class="input-box">
+              <label for="mobile">Mobile:</label>
+              <input
+                type="text"
+                name="mobile"
+                [(ngModel)]="singleContact.mobile"
+              />
+            </div>
+          </div>
+          <div>
+            <div class="input-box">
+              <label for="email">Email:</label>
+              <input
+                type="text"
+                name="email"
+                [(ngModel)]="singleContact.email"
+              />
+            </div>
+            <div class="input-box">
+              <label for="title">Title:</label>
+              <input
+                type="text"
+                name="title"
+                [(ngModel)]="singleContact.title"
+              />
+            </div>
+            <select
+              name="groups"
+              id="groups"
+              [(ngModel)]="singleContact.groupID"
+              [value]="singleContact.groupID"
+            >
+              <option *ngFor="let group of contactGroups" [value]="group.id">
+                {{ group.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <input type="submit" value="Edit Contact" />
+        </div>
+      </form>
+    </div>
+
+    <figure class="edit__right">
+      <img
+        src="https://static.vecteezy.com/system/resources/previews/019/038/275/original/contact-list-of-mix-race-people-social-network-communication-concept-png.png"
+        alt=""
+      />
+    </figure>
+  </ng-template>
+</section>

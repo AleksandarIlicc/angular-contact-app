@@ -1,0 +1,60 @@
+{
+  "contacts": [
+    {
+      "id": "1",
+      "name": "Aleksandar Ilic",
+      "company": "Microsoft",
+      "email": "aleksandari336@gmail.com",
+      "title": "Frontend Enginee",
+      "mobile": "0654152674",
+      "photo": "https://cdn-icons-png.flaticon.com/512/219/219988.png",
+      "groupID": "1"
+    },
+    {
+      "id": "2",
+      "name": "Zorica Bajcetic",
+      "company": "TikTok",
+      "email": "zorica@gmail.com",
+      "title": "Influancer",
+      "mobile": "0644558962",
+      "photo": "https://cdn-icons-png.flaticon.com/512/219/219969.png",
+      "groupID": "4"
+    },
+    {
+      "id": "3",
+      "name": "Dragorad Kanacki",
+      "company": "Agro d.o.o",
+      "email": "drago@gmail.com",
+      "title": "Director",
+      "mobile": "0615356173",
+      "photo": "https://cdn-icons-png.flaticon.com/512/219/219986.png",
+      "groupID": "1"
+    }
+  ],
+  "groups": [
+    {
+      "id": "1",
+      "name": "Colleague"
+    },
+    {
+      "id": "2",
+      "name": "Friend"
+    },
+    {
+      "id": "3",
+      "name": "Family"
+    },
+    {
+      "id": "4",
+      "name": "Service"
+    },
+    {
+      "id": "5",
+      "name": "Community"
+    },
+    {
+      "id": "6",
+      "name": "Social"
+    }
+  ]
+}

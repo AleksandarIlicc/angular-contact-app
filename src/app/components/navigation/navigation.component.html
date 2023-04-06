@@ -1,0 +1,25 @@
+<nav class="nav">
+  <div class="nav__logo">
+    <a routerLink="/">
+      <fa-icon
+        [icon]="icon.faUser"
+        [ngStyle]="{ color: '#5959e6', fontSize: '2.5rem' }"
+      ></fa-icon>
+      <span> ContactList </span>
+    </a>
+  </div>
+  <div class="nav__container">
+    <div>
+      <fa-icon [icon]="icon.faSearch" class="icon-search"></fa-icon>
+      <input type="search" placeholder="Search" />
+    </div>
+    <div>
+      <fa-icon [icon]="icon.faBell" class="icon-bell"></fa-icon>
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/219/219988.png"
+        alt=""
+        class="user-photo"
+      />
+    </div>
+  </div>
+</nav>
