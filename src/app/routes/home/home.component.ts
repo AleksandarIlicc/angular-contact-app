@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IContact } from 'src/app/interfaces/IContact';
-import { ContactService } from 'src/app/service/contact.service';
+import { Firestore, collection, getDocs } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-home',
@@ -8,17 +8,29 @@ import { ContactService } from 'src/app/service/contact.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  contacts: IContact[] = [];
+  public contacts: IContact[] = [] as IContact[];
+  public contact: IContact = {} as IContact;
+  public loading: boolean = true;
 
-  constructor(private _contactService: ContactService) {}
+  constructor(private firestore: Firestore) {}
 
   ngOnInit(): void {
     this.getContacts();
   }
 
-  getContacts() {
-    this._contactService.getContacts().subscribe((data) => {
-      this.contacts = data;
-    });
+  async getContacts() {
+    const collectionRef = collection(this.firestore, 'contacts');
+
+    try {
+      this.loading = true;
+      const querySnapshot = await getDocs(collectionRef);
+      this.contacts = querySnapshot.docs.map((item) => {
+        return { id: item.id, ...item.data() } as IContact;
+      });
+      this.loading = false;
+    } catch (err) {
+      this.loading = false;
+      console.log(err);
+    }
   }
 }

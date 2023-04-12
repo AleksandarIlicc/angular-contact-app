@@ -17,6 +17,13 @@ a {
   text-decoration: none;
 }
 
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: #313131;
+}
+
 html {
   font-size: 62.5%;
   box-sizing: border-box;
@@ -30,5 +37,32 @@ body {
 .section {
   width: 100%;
   height: calc(100vh - 8vh);
-  padding: 3rem 0;
+}
+
+.flex-container {
+  display: flex;
+
+  &__aside {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+  }
+
+  &__main {
+    padding: 2rem;
+    background: linear-gradient(
+      to bottom,
+      rgb(230, 230, 230),
+      rgb(245, 245, 245)
+    );
+
+    &--home-flex {
+      flex: 6;
+    }
+    &--view-flex {
+      flex: 3;
+    }
+  }
 }

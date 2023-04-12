@@ -12,7 +12,11 @@ import { SingleContactComponent } from './routes/single-contact/single-contact.c
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ContactListComponent } from './components/contact-list/contact-list.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
-import { ContactService } from './service/contact.service';
+
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -30,8 +34,10 @@ import { ContactService } from './service/contact.service';
     AppRoutingModule,
     FontAwesomeModule,
     FormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
   ],
-  providers: [ContactService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

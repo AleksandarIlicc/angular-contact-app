@@ -1,5 +1,5 @@
-<section class="home section">
-  <div class="home__aside">
+<section class="home section flex-container">
+  <div class="home__aside flex-container__aside">
     <ul>
       <li>Dashboard</li>
       <li>Emails</li>
@@ -11,7 +11,7 @@
       <li>Campaign</li>
     </ul>
   </div>
-  <div class="home__main">
+  <div class="home__main flex-container__main flex-container__main--home-flex">
     <div class="home__container">
       <ul>
         <li>Name</li>
@@ -20,7 +20,16 @@
         <li>Title</li>
         <li>Source</li>
       </ul>
-      <app-contact-list [contactsList]="contacts"></app-contact-list>
+
+      <div *ngIf="loading; then spinner; else contactsList"></div>
+
+      <ng-template #spinner>
+        <app-spinner></app-spinner>
+      </ng-template>
+
+      <ng-template #contactsList>
+        <app-contact-list [contactsList]="contacts"></app-contact-list>
+      </ng-template>
     </div>
   </div>
 </section>

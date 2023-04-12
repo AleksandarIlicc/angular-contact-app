@@ -1,1 +1,94 @@
-<p>{{ singleContact | json }}</p>
+<section class="section flex-container">
+  <div class="flex-container__aside">
+    <h2 [style.marginBottom.rem]="'3'">Contacts</h2>
+    <ul [style.width.%]="'100'">
+      <li *ngFor="let contact of contacts">
+        <a
+          routerLink="/contact/{{ contact.id }}"
+          [ngStyle]="{ display: 'flex', alignItems: 'center' }"
+          (click)="getSingleContact(contact.id)"
+        >
+          <figure
+            [ngStyle]="{ width: '7rem', height: '7rem', marginRight: '2rem' }"
+            class="contact__img"
+          >
+            <img [src]="contact.photo" alt="contact" />
+          </figure>
+          <div>
+            <p [ngStyle]="{ fontWeight: '600' }">
+              {{ contact.name }}
+            </p>
+            <p [ngStyle]="{ fontSize: '1.3rem', color: '#939393' }">
+              {{ contact.title }}
+            </p>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="flex-container__main flex-container__main--view-flex">
+    <div *ngIf="loading; then spinner; else contact"></div>
+
+    <ng-template #spinner>
+      <app-spinner></app-spinner>
+    </ng-template>
+
+    <ng-template #contact>
+      <div>
+        <div class="contact__header">
+          <figure class="contact__img">
+            <img [src]="singleContact.photo" alt="contact" />
+          </figure>
+          <p class="contact__name">{{ singleContact.name }}</p>
+        </div>
+        <div class="contact__body">
+          <div>
+            <p class="contact__info">
+              <fa-icon [icon]="icon.faEnvelope" class="contact__icon"></fa-icon>
+              <span>
+                {{ singleContact.email }}
+              </span>
+            </p>
+            <p class="contact__info">
+              <fa-icon [icon]="icon.faPhoneAlt" class="contact__icon"></fa-icon>
+              <span>
+                {{ singleContact.mobile }}
+              </span>
+            </p>
+            <p class="contact__info">
+              <fa-icon [icon]="icon.faSuitcase" class="contact__icon"></fa-icon>
+              <span>
+                {{ singleContact.title }}
+              </span>
+            </p>
+          </div>
+          <div>
+            <p class="contact__info">
+              <fa-icon
+                [icon]="icon.faLocationArrow"
+                class="contact__icon"
+              ></fa-icon>
+              <span>
+                {{ singleContact.address }}
+              </span>
+            </p>
+            <p class="contact__info">
+              <fa-icon [icon]="icon.faBuilding" class="contact__icon"></fa-icon>
+              <span>
+                {{ singleContact.company }}
+              </span>
+            </p>
+            <p class="contact__info">
+              <fa-icon
+                [icon]="icon.faUserFriends"
+                class="contact__icon"
+              ></fa-icon>
+              <span>Friend</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</section>

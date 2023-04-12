@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IContact } from 'src/app/interfaces/IContact';
 import { faPencilAlt, faEye, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { ContactService } from 'src/app/service/contact.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,20 +9,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./contact-list.component.scss'],
 })
 export class ContactListComponent implements OnInit {
-  @Input() contactsList: IContact[] = [];
+  @Input() contactsList: IContact[] = [] as IContact[];
   icon = {
     faPencilAlt,
     faEye,
     faTimes,
   };
 
-  constructor(private contactService: ContactService, private router: Router) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {}
 
-  deleteContact(id: string) {
-    this.contactService.deleteContact(id).subscribe(() => {
-      this.router.navigate(['/']);
-    });
-  }
+  // deleteContact(id: string) {
+  //     this.router.navigate(['/']);
+  // }
 }

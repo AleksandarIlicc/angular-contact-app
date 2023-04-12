@@ -20,7 +20,7 @@
     <div>
       <a
         class="btn-contact btn-contact__edit"
-        routerLink="/edit/{{ contact.id }}"
+        routerLink="edit/{{ contact.id }}"
       >
         <fa-icon
           [icon]="icon.faPencilAlt"
@@ -39,10 +39,8 @@
         </fa-icon>
       </a>
     </div>
-    <a
-      class="btn-contact btn-contact__times"
-      (click)="deleteContact(contact.id)"
-    >
+    <a class="btn-contact btn-contact__times">
+      <!-- (click)="deleteContact(contact.id)" -->
       <fa-icon [icon]="icon.faTimes" [ngStyle]="{ color: 'rgb(255,255,255)' }">
       </fa-icon>
     </a>
