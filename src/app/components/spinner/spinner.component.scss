@@ -1,10 +1,11 @@
 .btnLoader {
+  width: 100vw;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
   background-color: inherit;
-  width: 100vw;
 }
 .btnLoader span {
   --dot1: #788c9f;
