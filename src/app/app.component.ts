@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { addDoc, Firestore, collection } from '@angular/fire/firestore';
-import { contacts } from 'src/app/database/db';
+import { contacts, groups } from 'src/app/database/db';
 
 @Component({
   selector: 'app-root',
@@ -9,14 +9,25 @@ import { contacts } from 'src/app/database/db';
 })
 export class AppComponent {
   constructor(private firestore: Firestore) {
-    // this.addContact();
+    // this.addContacts();
+    // this.addGroups();
   }
 
-  async addContact() {
-    const db = collection(this.firestore, 'contacts');
+  // contacts added initially
+  async addContacts() {
+    const collectionRef = collection(this.firestore, 'contacts');
 
     for (const contact of contacts) {
-      await addDoc(db, contact);
+      await addDoc(collectionRef, contact);
+    }
+  }
+
+  // groups added initially
+  async addGroups() {
+    const collectionRef = collection(this.firestore, 'groups');
+
+    for (const group of groups) {
+      await addDoc(collectionRef, group);
     }
   }
 }

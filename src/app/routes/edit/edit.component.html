@@ -1,4 +1,7 @@
-<section class="edit section">
+<section
+  class="edit-add section"
+  [ngStyle]="{ height: '100%', padding: '3rem' }"
+>
   <div *ngIf="loading; then spinner; else contactForm"></div>
 
   <ng-template #spinner>
@@ -6,12 +9,11 @@
   </ng-template>
 
   <ng-template #contactForm>
-    <div class="edit__left">
+    <div class="edit-add__left">
       <figure class="contact-img">
         <img [src]="singleContact.photo" alt="contact image" />
       </figure>
-      <form action="" class="form">
-        <!-- (submit)="editContact()" -->
+      <form action="" class="form" (submit)="editContact()">
         <div class="form__container">
           <div>
             <div class="input-box">
@@ -34,8 +36,6 @@
                 [(ngModel)]="singleContact.mobile"
               />
             </div>
-          </div>
-          <div>
             <div class="input-box">
               <label for="email">Email:</label>
               <input
@@ -44,6 +44,8 @@
                 [(ngModel)]="singleContact.email"
               />
             </div>
+          </div>
+          <div>
             <div class="input-box">
               <label for="title">Title:</label>
               <input
@@ -52,13 +54,30 @@
                 [(ngModel)]="singleContact.title"
               />
             </div>
+            <div class="input-box">
+              <label for="company">Company:</label>
+              <input
+                type="text"
+                name="company"
+                [(ngModel)]="singleContact.company"
+              />
+            </div>
+            <div class="input-box">
+              <label for="address">Address:</label>
+              <input
+                type="text"
+                name="address"
+                [(ngModel)]="singleContact.address"
+                required
+              />
+            </div>
             <select
               name="groups"
               id="groups"
-              [(ngModel)]="singleContact.groupID"
-              [value]="singleContact.groupID"
+              [(ngModel)]="singleContact.group"
+              [value]="singleContact.group"
             >
-              <option *ngFor="let group of contactGroups" [value]="group.id">
+              <option *ngFor="let group of contactGroups" [value]="group.name">
                 {{ group.name }}
               </option>
             </select>
@@ -70,7 +89,7 @@
       </form>
     </div>
 
-    <figure class="edit__right">
+    <figure class="edit-add__right">
       <img
         src="https://static.vecteezy.com/system/resources/previews/019/038/275/original/contact-list-of-mix-race-people-social-network-communication-concept-png.png"
         alt=""

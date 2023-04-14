@@ -12,7 +12,7 @@
             [ngStyle]="{ width: '7rem', height: '7rem', marginRight: '2rem' }"
             class="contact__img"
           >
-            <img [src]="contact.photo" alt="contact" />
+            <img [src]="contact.photo || noUserPhoto" alt="contact" />
           </figure>
           <div>
             <p [ngStyle]="{ fontWeight: '600' }">
@@ -38,33 +38,33 @@
       <div>
         <div class="contact__header">
           <figure class="contact__img">
-            <img [src]="singleContact.photo" alt="contact" />
+            <img [src]="singleContact.photo || noUserPhoto" alt="contact" />
           </figure>
           <p class="contact__name">{{ singleContact.name }}</p>
         </div>
         <div class="contact__body">
-          <div>
-            <p class="contact__info">
+          <ul>
+            <li class="contact__info">
               <fa-icon [icon]="icon.faEnvelope" class="contact__icon"></fa-icon>
               <span>
                 {{ singleContact.email }}
               </span>
-            </p>
-            <p class="contact__info">
+            </li>
+            <li class="contact__info">
               <fa-icon [icon]="icon.faPhoneAlt" class="contact__icon"></fa-icon>
               <span>
                 {{ singleContact.mobile }}
               </span>
-            </p>
-            <p class="contact__info">
+            </li>
+            <li class="contact__info">
               <fa-icon [icon]="icon.faSuitcase" class="contact__icon"></fa-icon>
               <span>
                 {{ singleContact.title }}
               </span>
-            </p>
-          </div>
-          <div>
-            <p class="contact__info">
+            </li>
+          </ul>
+          <ul>
+            <li class="contact__info">
               <fa-icon
                 [icon]="icon.faLocationArrow"
                 class="contact__icon"
@@ -72,21 +72,21 @@
               <span>
                 {{ singleContact.address }}
               </span>
-            </p>
-            <p class="contact__info">
+            </li>
+            <li class="contact__info">
               <fa-icon [icon]="icon.faBuilding" class="contact__icon"></fa-icon>
               <span>
                 {{ singleContact.company }}
               </span>
-            </p>
-            <p class="contact__info">
+            </li>
+            <li class="contact__info">
               <fa-icon
                 [icon]="icon.faUserFriends"
                 class="contact__icon"
               ></fa-icon>
-              <span>Friend</span>
-            </p>
-          </div>
+              <span>{{ singleContact.group }}</span>
+            </li>
+          </ul>
         </div>
       </div>
     </ng-template>

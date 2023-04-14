@@ -8,10 +8,14 @@ import {
   faBuilding,
   faUserFriends,
   faSuitcase,
+  faPencilAlt,
+  faEye,
+  faTimes,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   Firestore,
   collection,
+  deleteDoc,
   doc,
   getDoc,
   getDocs,
@@ -26,6 +30,8 @@ export class SingleContactComponent implements OnInit {
   public contactID: string | null = null;
   public singleContact: IContact = {} as IContact;
   public contacts: IContact[] = [] as IContact[];
+  public noUserPhoto: string =
+    'https://icon-library.com/images/no-user-image-icon/no-user-image-icon-23.jpg';
   public loading: boolean = true;
   public errorMessage!: Error;
 
@@ -36,6 +42,9 @@ export class SingleContactComponent implements OnInit {
     faBuilding,
     faUserFriends,
     faSuitcase,
+    faPencilAlt,
+    faEye,
+    faTimes,
   };
 
   constructor(
@@ -74,13 +83,20 @@ export class SingleContactComponent implements OnInit {
     try {
       this.loading = true;
       const documentSnapshot = await getDoc(documentRef);
+
       if (documentSnapshot.exists()) {
         this.singleContact = documentSnapshot.data() as IContact;
+        this.loading = false;
       }
-      this.loading = false;
     } catch (error) {
       this.loading = false;
       this.errorMessage = error as Error;
     }
+  }
+
+  deleteContact(id: string) {
+    const documentRef = doc(this.firestore, 'contacts', id);
+    deleteDoc(documentRef);
+    this.getContacts();
   }
 }

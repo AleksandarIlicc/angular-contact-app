@@ -7,7 +7,7 @@ export const contacts = [
     title: 'Frontend Enginee',
     mobile: '0654152674',
     photo: 'https://cdn-icons-png.flaticon.com/512/219/219988.png',
-    groupID: '1',
+    group: 'Colleague',
   },
   {
     name: 'Zorica Bajcetic',
@@ -17,7 +17,7 @@ export const contacts = [
     title: 'Influancer',
     mobile: '0644558962',
     photo: 'https://cdn-icons-png.flaticon.com/512/219/219969.png',
-    groupID: '4',
+    group: 'Service',
   },
   {
     name: 'Dragorad Kanacki',
@@ -27,33 +27,27 @@ export const contacts = [
     title: 'Director',
     mobile: '0615356173',
     photo: 'https://cdn-icons-png.flaticon.com/512/219/219986.png',
-    groupID: '1',
+    group: 'Family',
   },
 ];
 
 export const groups = [
   {
-    id: '1',
     name: 'Colleague',
   },
   {
-    id: '2',
     name: 'Friend',
   },
   {
-    id: '3',
     name: 'Family',
   },
   {
-    id: '4',
     name: 'Service',
   },
   {
-    id: '5',
     name: 'Community',
   },
   {
-    id: '6',
     name: 'Social',
   },
 ];

@@ -7,5 +7,5 @@ export interface IContact {
   title: string;
   mobile: number;
   photo?: string;
-  groupID: number;
+  group: string;
 }

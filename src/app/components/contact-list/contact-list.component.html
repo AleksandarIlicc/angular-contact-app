@@ -2,9 +2,14 @@
   <li *ngFor="let contact of contactsList" class="contact__item">
     <div>
       <img
-        [src]="contact.photo"
+        [src]="contact.photo || noUserPhoto"
         alt=""
-        [ngStyle]="{ width: '4rem', marginRight: '2rem' }"
+        [ngStyle]="{
+          width: '4rem',
+          height: '4rem',
+          marginRight: '2rem',
+          borderRadius: '50%'
+        }"
       />
       <div>{{ contact.name }}</div>
     </div>
@@ -39,8 +44,10 @@
         </fa-icon>
       </a>
     </div>
-    <a class="btn-contact btn-contact__times">
-      <!-- (click)="deleteContact(contact.id)" -->
+    <a
+      class="btn-contact btn-contact__times"
+      (click)="deleteContact(contact.id)"
+    >
       <fa-icon [icon]="icon.faTimes" [ngStyle]="{ color: 'rgb(255,255,255)' }">
       </fa-icon>
     </a>
