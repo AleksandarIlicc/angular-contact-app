@@ -1,2 +1,9 @@
-<app-navigation></app-navigation>
-<router-outlet></router-outlet>
+<div *ngIf="browserWidth < mobileBrowserWidth; then app; else message"></div>
+<ng-template #app>
+  <app-navigation></app-navigation>
+  <router-outlet></router-outlet>
+</ng-template>
+
+<ng-template #message>
+  <p class="message-about-app">message</p>
+</ng-template>

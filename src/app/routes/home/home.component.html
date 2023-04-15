@@ -1,40 +1,21 @@
 <section class="home section flex-container">
-  <div class="home__aside flex-container__aside">
-    <ul>
-      <li>
-        <a routerLink="/new-contact" [ngStyle]="{ color: 'white' }">
-          Add Contact
-        </a>
-      </li>
-      <li>Contacts</li>
-      <li>Emails</li>
-      <li>Lists</li>
-      <li>Dashboard</li>
-      <li>Forms</li>
-      <li>Automations</li>
-      <li>Smart Pages</li>
-      <li>Campaign</li>
-    </ul>
-  </div>
-  <div class="home__main flex-container__main flex-container__main--home-flex">
-    <div class="home__container">
-      <ul>
-        <li>Name</li>
-        <li>Mobile</li>
-        <li>Email</li>
-        <li>Title</li>
-        <li>Source</li>
-      </ul>
+  <h1
+    [ngStyle]="{
+      color: 'rgb(255,255,255)',
+      marginBottom: '4rem',
+      textAlign: 'center'
+    }"
+  >
+    Contacts
+  </h1>
 
-      <div *ngIf="loading; then spinner; else contactsList"></div>
+  <div *ngIf="loading; then spinner; else contactsList"></div>
 
-      <ng-template #spinner>
-        <app-spinner></app-spinner>
-      </ng-template>
+  <ng-template #spinner>
+    <app-spinner></app-spinner>
+  </ng-template>
 
-      <ng-template #contactsList>
-        <app-contact-list [contactsList]="contacts"></app-contact-list>
-      </ng-template>
-    </div>
-  </div>
+  <ng-template #contactsList>
+    <app-contact-list [contactsList]="contacts"></app-contact-list>
+  </ng-template>
 </section>

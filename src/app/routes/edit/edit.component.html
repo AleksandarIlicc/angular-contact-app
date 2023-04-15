@@ -9,91 +9,83 @@
   </ng-template>
 
   <ng-template #contactForm>
-    <div class="edit-add__left">
-      <figure class="contact-img">
-        <img [src]="singleContact.photo" alt="contact image" />
-      </figure>
+    <div>
+      <div
+        [ngStyle]="{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          marginBottom: '4rem'
+        }"
+      >
+        <figure class="edit-add__contact-img">
+          <img [src]="singleContact.photo" alt="contact image" />
+        </figure>
+        <h2 [ngStyle]="{ color: 'rgb(255,255,255)' }">
+          {{ singleContact.name }}
+        </h2>
+      </div>
       <form action="" class="form" (submit)="editContact()">
         <div class="form__container">
-          <div>
-            <div class="input-box">
-              <label for="photo">Photo:</label>
-              <input
-                type="text"
-                name="photo"
-                [(ngModel)]="singleContact.photo"
-              />
-            </div>
-            <div class="input-box">
-              <label for="name">Name:</label>
-              <input type="text" name="name" [(ngModel)]="singleContact.name" />
-            </div>
-            <div class="input-box">
-              <label for="mobile">Mobile:</label>
-              <input
-                type="text"
-                name="mobile"
-                [(ngModel)]="singleContact.mobile"
-              />
-            </div>
-            <div class="input-box">
-              <label for="email">Email:</label>
-              <input
-                type="text"
-                name="email"
-                [(ngModel)]="singleContact.email"
-              />
-            </div>
+          <div class="input-box">
+            <label for="photo">Photo:</label>
+            <input type="text" name="photo" [(ngModel)]="singleContact.photo" />
           </div>
-          <div>
-            <div class="input-box">
-              <label for="title">Title:</label>
-              <input
-                type="text"
-                name="title"
-                [(ngModel)]="singleContact.title"
-              />
-            </div>
-            <div class="input-box">
-              <label for="company">Company:</label>
-              <input
-                type="text"
-                name="company"
-                [(ngModel)]="singleContact.company"
-              />
-            </div>
-            <div class="input-box">
-              <label for="address">Address:</label>
-              <input
-                type="text"
-                name="address"
-                [(ngModel)]="singleContact.address"
-                required
-              />
-            </div>
-            <select
-              name="groups"
-              id="groups"
-              [(ngModel)]="singleContact.group"
-              [value]="singleContact.group"
-            >
-              <option *ngFor="let group of contactGroups" [value]="group.name">
-                {{ group.name }}
-              </option>
-            </select>
+          <div class="input-box">
+            <label for="name">Name:</label>
+            <input type="text" name="name" [(ngModel)]="singleContact.name" />
           </div>
+          <div class="input-box">
+            <label for="mobile">Mobile:</label>
+            <input
+              type="text"
+              name="mobile"
+              [(ngModel)]="singleContact.mobile"
+            />
+          </div>
+          <div class="input-box">
+            <label for="email">Email:</label>
+            <input type="text" name="email" [(ngModel)]="singleContact.email" />
+          </div>
+        </div>
+        <div>
+          <div class="input-box">
+            <label for="title">Title:</label>
+            <input type="text" name="title" [(ngModel)]="singleContact.title" />
+          </div>
+          <div class="input-box">
+            <label for="company">Company:</label>
+            <input
+              type="text"
+              name="company"
+              [(ngModel)]="singleContact.company"
+            />
+          </div>
+          <div class="input-box">
+            <label for="address">Address:</label>
+            <input
+              type="text"
+              name="address"
+              [(ngModel)]="singleContact.address"
+              required
+            />
+          </div>
+          <select
+            name="groups"
+            id="groups"
+            [(ngModel)]="singleContact.group"
+            [value]="singleContact.group"
+          >
+            <option *ngFor="let group of contactGroups" [value]="group.name">
+              {{ group.name }}
+            </option>
+          </select>
         </div>
         <div>
           <input type="submit" value="Edit Contact" />
         </div>
       </form>
     </div>
-
-    <figure class="edit-add__right">
-      <img
-        src="https://static.vecteezy.com/system/resources/previews/019/038/275/original/contact-list-of-mix-race-people-social-network-communication-concept-png.png"
-        alt=""
-      />
-    </figure>
   </ng-template>
 </section>

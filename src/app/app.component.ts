@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { addDoc, Firestore, collection } from '@angular/fire/firestore';
 import { contacts, groups } from 'src/app/database/db';
 
@@ -8,10 +8,16 @@ import { contacts, groups } from 'src/app/database/db';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  constructor(private firestore: Firestore) {
-    // this.addContacts();
-    // this.addGroups();
+  public browserWidth: number = 480;
+  public mobileBrowserWidth: number = 481;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    const window = event.target as Window;
+    this.browserWidth = window.innerWidth;
   }
+
+  constructor(private firestore: Firestore) {}
 
   // contacts added initially
   async addContacts() {

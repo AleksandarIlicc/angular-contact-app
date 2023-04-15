@@ -27,6 +27,10 @@ a:active {
 html {
   font-size: 62.5%;
   box-sizing: border-box;
+
+  @media only screen and (max-width: 56.25em) {
+    font-size: 50%;
+  }
 }
 
 body {
@@ -34,83 +38,46 @@ body {
   font-size: 1.6rem;
 }
 
-.section {
-  width: 100%;
-  height: calc(100vh - 10vh);
+.message-about-app {
+  background-color: red;
 }
 
-.flex-container {
-  display: flex;
-
-  &__aside {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-  }
-
-  &__main {
-    padding: 2rem;
-    background: linear-gradient(
-      to bottom,
-      rgb(230, 230, 230),
-      rgb(245, 245, 245)
-    );
-
-    &--home-flex {
-      flex: 6;
-    }
-    &--view-flex {
-      flex: 3;
-    }
-  }
+.section {
+  width: 100vw;
+  min-height: calc(100vh - 10vh);
+  padding: 2rem;
 }
 
 .edit-add {
-  display: flex;
+  background-color: rgb(0, 0, 0);
 
-  &__left {
-    flex-basis: 60%;
-  }
-
-  &__right {
-    flex-basis: 40%;
+  &__contact-img {
+    width: 15rem;
+    height: 15rem;
+    margin-bottom: 2rem;
 
     img {
       width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   }
-}
 
-.contact-img {
-  width: 15rem;
-  margin-bottom: 2rem;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  .message-invalid {
+    font-weight: 600;
+    width: 90%;
+    margin-inline: auto;
+    margin-top: 2rem;
+    color: #d53434;
   }
 }
 
 .form {
-  width: 100%;
-  max-width: 70rem;
+  width: 90%;
+  margin-inline: auto;
 
   & * + * {
     margin-top: 2rem;
-  }
-
-  & > div {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 3rem;
-
-    & > div {
-      flex: 1;
-    }
   }
 
   .input-box {
@@ -120,11 +87,11 @@ body {
 
   label {
     font-weight: 600;
-    color: rgb(87, 87, 87);
+    color: rgb(255, 255, 255);
   }
 
   input {
-    background-color: #eee;
+    background-color: rgb(191, 191, 191);
     padding: 1.5rem 1.2rem;
     outline: none;
     border: none;
@@ -132,7 +99,7 @@ body {
   }
 
   input[type="submit"] {
-    background-color: rgb(89, 89, 230);
+    background-color: rgba(14, 191, 141, 0.9);
     color: white;
     font-weight: bold;
     letter-spacing: 0.1rem;
@@ -140,6 +107,7 @@ body {
   }
 
   select {
+    margin: 4rem 0 1rem 0;
     padding: 1rem 2rem;
     border: none;
     background-color: #eee;
@@ -147,40 +115,5 @@ body {
     option {
       background-color: rgb(166, 166, 166);
     }
-  }
-}
-
-.btn-contact {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(230, 230, 230);
-  border-radius: 0.3rem;
-  cursor: pointer;
-
-  &__edit {
-    width: 12rem;
-
-    span {
-      margin-left: 0.9rem;
-      color: rgb(154, 154, 154);
-    }
-  }
-
-  &__view {
-    padding: 0 2rem;
-    margin-left: 1rem;
-  }
-
-  &__times {
-    position: absolute;
-    top: -1rem;
-    right: -1rem;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 0.3rem;
-    background-color: #5959e6;
-    box-shadow: 0.1rem 0.1rem 0.7rem rgba(191, 190, 190, 0.3);
   }
 }

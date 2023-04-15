@@ -11,6 +11,7 @@ import {
   faPencilAlt,
   faEye,
   faTimes,
+  faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   Firestore,
@@ -45,6 +46,7 @@ export class SingleContactComponent implements OnInit {
     faPencilAlt,
     faEye,
     faTimes,
+    faTrash,
   };
 
   constructor(
@@ -98,5 +100,6 @@ export class SingleContactComponent implements OnInit {
     const documentRef = doc(this.firestore, 'contacts', id);
     deleteDoc(documentRef);
     this.getContacts();
+    // this.getSingleContact() GET ID OF NEXT CONTACT IF EXIST
   }
 }

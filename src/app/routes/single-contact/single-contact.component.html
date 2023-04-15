@@ -1,8 +1,62 @@
-<section class="section flex-container">
-  <div class="flex-container__aside">
+<section class="contact section">
+  <div *ngIf="loading; then spinner; else contact"></div>
+
+  <ng-template #spinner>
+    <app-spinner></app-spinner>
+  </ng-template>
+
+  <ng-template #contact>
+    <div class="contact__header">
+      <figure
+        [style.marginBottom.rem]="'2'"
+        class="contact__img contact__img--main"
+      >
+        <img [src]="singleContact.photo || noUserPhoto" alt="contact" />
+      </figure>
+      <p class="contact__name">{{ singleContact.name }}</p>
+    </div>
+    <ul class="contact__body">
+      <li class="contact__info">
+        <fa-icon [icon]="icon.faEnvelope" class="contact__icon"></fa-icon>
+        <span>
+          {{ singleContact.email }}
+        </span>
+      </li>
+      <li class="contact__info">
+        <fa-icon [icon]="icon.faPhoneAlt" class="contact__icon"></fa-icon>
+        <span>
+          {{ singleContact.mobile }}
+        </span>
+      </li>
+      <li class="contact__info">
+        <fa-icon [icon]="icon.faSuitcase" class="contact__icon"></fa-icon>
+        <span>
+          {{ singleContact.title }}
+        </span>
+      </li>
+      <li class="contact__info">
+        <fa-icon [icon]="icon.faLocationArrow" class="contact__icon"></fa-icon>
+        <span>
+          {{ singleContact.address }}
+        </span>
+      </li>
+      <li class="contact__info">
+        <fa-icon [icon]="icon.faBuilding" class="contact__icon"></fa-icon>
+        <span>
+          {{ singleContact.company }}
+        </span>
+      </li>
+      <li class="contact__info">
+        <fa-icon [icon]="icon.faUserFriends" class="contact__icon"></fa-icon>
+        <span>{{ singleContact.group }}</span>
+      </li>
+    </ul>
+  </ng-template>
+
+  <div [style.marginTop.rem]="'5'">
     <h2 [style.marginBottom.rem]="'3'">Contacts</h2>
-    <ul [style.width.%]="'100'">
-      <li *ngFor="let contact of contacts">
+    <ul class="contact__list">
+      <li *ngFor="let contact of contacts" class="contact__item">
         <a
           routerLink="/contact/{{ contact.id }}"
           [ngStyle]="{ display: 'flex', alignItems: 'center' }"
@@ -10,85 +64,30 @@
         >
           <figure
             [ngStyle]="{ width: '7rem', height: '7rem', marginRight: '2rem' }"
-            class="contact__img"
+            class="contact__img contact__img--list"
           >
             <img [src]="contact.photo || noUserPhoto" alt="contact" />
           </figure>
-          <div>
-            <p [ngStyle]="{ fontWeight: '600' }">
+          <div [style.flex]="'1'">
+            <p [ngStyle]="{ fontWeight: '600', color: 'rgb(255,255,255)' }">
               {{ contact.name }}
             </p>
             <p [ngStyle]="{ fontSize: '1.3rem', color: '#939393' }">
               {{ contact.title }}
             </p>
           </div>
+          <div>
+            <button
+              [style.color]="'rgba(14, 191, 141, 0.9)'"
+              type="button"
+              class="contact__btn-trash"
+              (click)="deleteContact(contact.id)"
+            >
+              <fa-icon [icon]="icon.faTrash"></fa-icon>
+            </button>
+          </div>
         </a>
       </li>
     </ul>
-  </div>
-
-  <div class="flex-container__main flex-container__main--view-flex">
-    <div *ngIf="loading; then spinner; else contact"></div>
-
-    <ng-template #spinner>
-      <app-spinner></app-spinner>
-    </ng-template>
-
-    <ng-template #contact>
-      <div>
-        <div class="contact__header">
-          <figure class="contact__img">
-            <img [src]="singleContact.photo || noUserPhoto" alt="contact" />
-          </figure>
-          <p class="contact__name">{{ singleContact.name }}</p>
-        </div>
-        <div class="contact__body">
-          <ul>
-            <li class="contact__info">
-              <fa-icon [icon]="icon.faEnvelope" class="contact__icon"></fa-icon>
-              <span>
-                {{ singleContact.email }}
-              </span>
-            </li>
-            <li class="contact__info">
-              <fa-icon [icon]="icon.faPhoneAlt" class="contact__icon"></fa-icon>
-              <span>
-                {{ singleContact.mobile }}
-              </span>
-            </li>
-            <li class="contact__info">
-              <fa-icon [icon]="icon.faSuitcase" class="contact__icon"></fa-icon>
-              <span>
-                {{ singleContact.title }}
-              </span>
-            </li>
-          </ul>
-          <ul>
-            <li class="contact__info">
-              <fa-icon
-                [icon]="icon.faLocationArrow"
-                class="contact__icon"
-              ></fa-icon>
-              <span>
-                {{ singleContact.address }}
-              </span>
-            </li>
-            <li class="contact__info">
-              <fa-icon [icon]="icon.faBuilding" class="contact__icon"></fa-icon>
-              <span>
-                {{ singleContact.company }}
-              </span>
-            </li>
-            <li class="contact__info">
-              <fa-icon
-                [icon]="icon.faUserFriends"
-                class="contact__icon"
-              ></fa-icon>
-              <span>{{ singleContact.group }}</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </ng-template>
   </div>
 </section>

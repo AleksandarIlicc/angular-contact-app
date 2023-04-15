@@ -1,55 +1,55 @@
 <ul class="contact__list">
   <li *ngFor="let contact of contactsList" class="contact__item">
     <div>
-      <img
-        [src]="contact.photo || noUserPhoto"
-        alt=""
-        [ngStyle]="{
-          width: '4rem',
-          height: '4rem',
-          marginRight: '2rem',
-          borderRadius: '50%'
-        }"
-      />
-      <div>{{ contact.name }}</div>
+      <img [src]="contact.photo || noUserPhoto" alt="" class="contact__img" />
+      <div class="contact__info">
+        <p>
+          {{ contact.name }}
+        </p>
+        <p>
+          {{ contact.mobile }}
+        </p>
+      </div>
     </div>
-    <div>{{ contact.mobile }}</div>
-    <div>
-      {{
-        contact.email.length > 20
-          ? contact.email.substr(0, 20) + "..."
-          : contact.email
-      }}
-    </div>
-    <div>{{ contact.title }}</div>
     <div>
       <a
-        class="btn-contact btn-contact__edit"
+        class="contact__btn contact__btn--edit"
         routerLink="edit/{{ contact.id }}"
       >
         <fa-icon
           [icon]="icon.faPencilAlt"
-          [ngStyle]="{ color: 'rgb(154, 154, 154)' }"
+          [ngStyle]="{ color: 'rgb(255, 255, 255)' }"
         ></fa-icon>
-        <span> Edit </span>
       </a>
       <a
-        class="btn-contact btn-contact__view"
+        class="contact__btn contact__btn--view"
         routerLink="contact/{{ contact.id }}"
       >
         <fa-icon
           [icon]="icon.faEye"
-          [ngStyle]="{ color: 'rgb(154, 154, 154)' }"
+          [ngStyle]="{ color: 'rgb(255, 255, 255)' }"
         >
         </fa-icon>
       </a>
     </div>
-    <a
-      class="btn-contact btn-contact__times"
+    <button
+      class="contact__btn contact__btn--times"
       (click)="deleteContact(contact.id)"
     >
-      <fa-icon [icon]="icon.faTimes" [ngStyle]="{ color: 'rgb(255,255,255)' }">
+      <fa-icon
+        [icon]="icon.faTimes"
+        [ngStyle]="{ color: 'rgb(255, 255, 255)' }"
+      >
       </fa-icon>
-    </a>
+    </button>
   </li>
 </ul>
+
+<!-- <div class="contact__email">
+      {{
+        contact.email.length > 15
+          ? contact.email.substr(0, 15) + "..."
+          : contact.email
+      }}
+    </div>
+    <div class="contact__title">{{ contact.title }}</div> -->
