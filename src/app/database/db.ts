@@ -10,14 +10,14 @@ export const contacts = [
     group: 'Colleague',
   },
   {
-    name: 'Zorica Bajcetic',
+    name: 'Marija Djordjev',
     address: 'Koste Abrasevica 6',
-    company: 'TikTok',
-    email: 'zorica@gmail.com',
-    title: 'Influancer',
-    mobile: '0644558962',
+    company: '',
+    email: 'djordjev02@gmail.com',
+    title: 'Prof. Srpskog jezika',
+    mobile: '0601785963',
     photo: 'https://cdn-icons-png.flaticon.com/512/219/219969.png',
-    group: 'Service',
+    group: 'Family',
   },
   {
     name: 'Dragorad Kanacki',
@@ -27,7 +27,7 @@ export const contacts = [
     title: 'Director',
     mobile: '0615356173',
     photo: 'https://cdn-icons-png.flaticon.com/512/219/219986.png',
-    group: 'Family',
+    group: 'Friend',
   },
 ];
 

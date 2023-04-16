@@ -16,6 +16,7 @@ import {
 })
 export class ContactListComponent implements OnInit {
   public loading: boolean = true;
+  public emptyContactList = 'Your contact list is empty';
   public noUserPhoto: string =
     'https://icon-library.com/images/no-user-image-icon/no-user-image-icon-23.jpg';
   @Input() contactsList: IContact[] = [] as IContact[];

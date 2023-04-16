@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  ParamMap,
+  Router,
+} from '@angular/router';
 import { IContact } from 'src/app/interfaces/IContact';
 import {
   faEnvelope,
@@ -52,6 +57,7 @@ export class SingleContactComponent implements OnInit {
   };
 
   constructor(
+    private router: Router,
     private activatedRoute: ActivatedRoute,
     private firestore: Firestore
   ) {}
@@ -60,10 +66,18 @@ export class SingleContactComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe((param: ParamMap) => {
       this.contactID = param.get('id');
     });
+
     if (this.contactID) {
       this.getSingleContact(this.contactID);
+      this.getContacts();
+      console.log('ON INIT');
     }
-    this.getContacts();
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.getContacts();
+      }
+    });
   }
 
   async getContacts() {
@@ -76,15 +90,15 @@ export class SingleContactComponent implements OnInit {
         return { id: item.id, ...item.data() } as IContact;
       });
       this.loading = false;
-    } catch (err) {
+    } catch (error) {
       this.loading = false;
-      console.log(err);
+      this.errorMessage = error as Error;
     }
   }
 
   async getSingleContact(contactID: string) {
     const documentRef = doc(this.firestore, 'contacts/' + contactID);
-    
+
     try {
       this.loading = true;
       const documentSnapshot = await getDoc(documentRef);
@@ -99,8 +113,22 @@ export class SingleContactComponent implements OnInit {
     }
   }
 
-  deleteContact(id: string) {
+  async deleteContact(id: string) {
+    const contactIndex = this.contacts.findIndex((item) => item.id === id);
+    const nextContactToLoad =
+      contactIndex > -1 &&
+      (this.contacts[contactIndex + 1] || this.contacts[contactIndex - 1]);
+
     const documentRef = doc(this.firestore, 'contacts', id);
-    deleteDoc(documentRef);
+    await deleteDoc(documentRef);
+
+    if (nextContactToLoad) {
+      this.router.navigateByUrl(`/contact/${nextContactToLoad.id}`);
+      this.contactID = nextContactToLoad.id;
+      this.getSingleContact(nextContactToLoad.id);
+      this.getContacts();
+    } else {
+      this.router.navigateByUrl('/contact');
+    }
   }
 }

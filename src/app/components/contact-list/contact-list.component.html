@@ -1,4 +1,4 @@
-<ul class="contact__list">
+<ul *ngIf="contactsList.length > 0; else noContacts" class="contact__list">
   <li *ngFor="let contact of contactsList" class="contact__item">
     <div>
       <img [src]="contact.photo || noUserPhoto" alt="" class="contact__img" />
@@ -45,11 +45,8 @@
   </li>
 </ul>
 
-<!-- <div class="contact__email">
-      {{
-        contact.email.length > 15
-          ? contact.email.substr(0, 15) + "..."
-          : contact.email
-      }}
-    </div>
-    <div class="contact__title">{{ contact.title }}</div> -->
+<ng-template #noContacts>
+  <div class="no-contacts">
+    <p class="no-contacts__text">{{ emptyContactList }}</p>
+  </div>
+</ng-template>
