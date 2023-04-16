@@ -38,8 +38,10 @@ body {
   font-size: 1.6rem;
 }
 
-.message-about-app {
-  background-color: red;
+.heading__primary {
+  color: rgb(255, 255, 255);
+  margin-bottom: 4rem;
+  text-align: center;
 }
 
 .section {
@@ -55,6 +57,9 @@ body {
     width: 15rem;
     height: 15rem;
     margin-bottom: 2rem;
+    border: 0.5rem solid rgb(138, 36, 223);
+    border-radius: 50%;
+    overflow: hidden;
 
     img {
       width: 100%;

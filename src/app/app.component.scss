@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap");
+
+.app-message {
+  &__container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    background-image: url("https://pulsarp.com/wp-content/uploads/2019/09/contact.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  &__img {
+    width: 40rem;
+    height: 60rem;
+    background-image: url("./assets/angular-contact-app--1.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  &__message {
+    flex-basis: 50%;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+  }
+}

@@ -55,12 +55,16 @@
   &__icon {
     font-size: 2rem;
     color: rgba(14, 191, 141, 0.9);
+
+    &--add {
+      margin-left: 2rem;
+    }
   }
 
   &__list {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
     row-gap: 2rem;
     column-gap: 3rem;
   }

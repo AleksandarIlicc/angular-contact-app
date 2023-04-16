@@ -12,6 +12,7 @@ import {
   faEye,
   faTimes,
   faTrash,
+  faPlus,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   Firestore,
@@ -47,6 +48,7 @@ export class SingleContactComponent implements OnInit {
     faEye,
     faTimes,
     faTrash,
+    faPlus,
   };
 
   constructor(
@@ -99,7 +101,5 @@ export class SingleContactComponent implements OnInit {
   deleteContact(id: string) {
     const documentRef = doc(this.firestore, 'contacts', id);
     deleteDoc(documentRef);
-    this.getContacts();
-    // this.getSingleContact() GET ID OF NEXT CONTACT IF EXIST
   }
 }

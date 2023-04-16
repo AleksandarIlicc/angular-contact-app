@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faUser, faBell, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-navigation',
@@ -9,7 +9,7 @@ import { faUser, faBell, faSearch } from '@fortawesome/free-solid-svg-icons';
 export class NavigationComponent implements OnInit {
   icon = {
     faUser,
-    faBell,
+    faPlus,
     faSearch,
   };
 

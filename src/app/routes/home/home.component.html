@@ -1,13 +1,5 @@
 <section class="home section flex-container">
-  <h1
-    [ngStyle]="{
-      color: 'rgb(255,255,255)',
-      marginBottom: '4rem',
-      textAlign: 'center'
-    }"
-  >
-    Contacts
-  </h1>
+  <h1 class="heading__primary">Contacts</h1>
 
   <div *ngIf="loading; then spinner; else contactsList"></div>
 
