@@ -84,6 +84,7 @@ export class SingleContactComponent implements OnInit {
 
   async getSingleContact(contactID: string) {
     const documentRef = doc(this.firestore, 'contacts/' + contactID);
+    
     try {
       this.loading = true;
       const documentSnapshot = await getDoc(documentRef);

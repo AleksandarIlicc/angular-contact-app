@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { faUser, faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -6,7 +6,7 @@ import { faUser, faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss'],
 })
-export class NavigationComponent implements OnInit {
+export class NavigationComponent {
   icon = {
     faUser,
     faPlus,
@@ -14,6 +14,4 @@ export class NavigationComponent implements OnInit {
   };
 
   constructor() {}
-
-  ngOnInit(): void {}
 }
