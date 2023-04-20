@@ -37,21 +37,7 @@ export class ContactsService {
   }
 
   async deleteContact(id: string) {
-    const contactIndex = this.contacts.findIndex((item) => item.id === id);
-    const nextContactToLoad =
-      contactIndex > -1 &&
-      (this.contacts[contactIndex + 1] || this.contacts[contactIndex - 1]);
-
     const documentRef = doc(this.firestore, 'contacts', id);
     await deleteDoc(documentRef);
-
-    if (nextContactToLoad) {
-      this.router.navigateByUrl(`/contact/${nextContactToLoad.id}`);
-      // this.contactID = nextContactToLoad.id;
-      this.getSingleContact(nextContactToLoad.id);
-      this.getContacts();
-    } else {
-      this.router.navigateByUrl('/contact');
-    }
   }
 }

@@ -5,7 +5,9 @@ import {
   ParamMap,
   Router,
 } from '@angular/router';
+
 import { IContact } from 'src/app/interfaces/IContact';
+
 import {
   faEnvelope,
   faPhoneAlt,
@@ -19,14 +21,7 @@ import {
   faTrash,
   faPlus,
 } from '@fortawesome/free-solid-svg-icons';
-import {
-  Firestore,
-  collection,
-  deleteDoc,
-  doc,
-  getDoc,
-  getDocs,
-} from '@angular/fire/firestore';
+
 import { ContactsService } from 'src/app/services/contacts.service';
 
 @Component({
@@ -81,36 +76,77 @@ export class SingleContactComponent implements OnInit {
   }
 
   async getContacts() {
-    this.loading = true
+    this.loading = true;
     try {
       await this.contactsService.getContacts();
       this.contacts = this.contactsService.contacts;
-      this.loading = false
+      this.loading = false;
     } catch (error) {
       this.errorMessage = error as Error;
-      this.loading = false
+      this.loading = false;
     }
   }
-  
+
   async getSingleContact(contactID: string) {
-    this.loading = true
+    this.loading = true;
     try {
       await this.contactsService.getSingleContact(contactID);
       this.singleContact = this.contactsService.singleContact;
-      
-    } catch(error) {
+    } catch (error) {
       this.errorMessage = error as Error;
-      this.loading = false
+      this.loading = false;
     }
   }
-  
+
   async deleteContact(contactID: string) {
+    const contactIndex = this.findContactIndex(contactID);
+
+    if (contactIndex === -1) return;
+
+    await this.deleteContactAtIndex(contactIndex);
+
+    const nextContactToLoad = this.getNextContactToLoad(contactIndex);
+
+    nextContactToLoad
+      ? this.nextLoadContact(nextContactToLoad)
+      : this.navigateToContacts();
+  }
+
+  private findContactIndex(contactID: string) {
+    return this.contacts.findIndex((item) => item.id === contactID);
+  }
+
+  private async deleteContactAtIndex(index: number): Promise<void> {
     try {
-      await this.contactsService.deleteContact(contactID);
-      
-    } catch(error) {
+      await this.contactsService.deleteContact(this.contacts[index].id);
+      this.contacts.splice(index, 1);
+      this.loading = false;
+    } catch (error) {
       this.errorMessage = error as Error;
-      this.loading = false
+      this.loading = false;
     }
+  }
+
+  private getNextContactToLoad(currentIndex: number): IContact | null {
+    const nextIndex = currentIndex + 1;
+    const prevIndex = currentIndex - 1;
+
+    return nextIndex < this.contacts.length
+      ? this.contacts[nextIndex]
+      : prevIndex >= 0
+      ? this.contacts[prevIndex]
+      : null;
+  }
+
+  private nextLoadContact(nextContactToLoad: IContact): void {
+    const nextContactId = nextContactToLoad.id;
+    this.router.navigateByUrl(`/contact/${nextContactId}`);
+    this.contactParamID = nextContactId;
+    this.getSingleContact(nextContactId);
+  }
+
+  private navigateToContacts(): void {
+    this.router.navigateByUrl('/');
+    this.singleContact = {} as IContact;
   }
 }
