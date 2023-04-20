@@ -1,15 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  Firestore,
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  updateDoc,
-} from '@angular/fire/firestore';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+
 import { IContact } from 'src/app/interfaces/IContact';
 import { IGroup } from 'src/app/interfaces/IGroup';
+
+import { ContactsService } from 'src/app/services/contacts.service';
 
 @Component({
   selector: 'app-edit',
@@ -26,8 +21,7 @@ export class EditComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private firestore: Firestore
+    private contactsService: ContactsService
   ) {}
 
   ngOnInit(): void {
@@ -41,34 +35,25 @@ export class EditComponent implements OnInit {
   }
 
   async getSingleContact(contactID: string) {
-    const documentRef = doc(this.firestore, 'contacts/' + contactID);
+    this.loading = true;
     try {
-      this.loading = true;
-      const documentSnapshot = await getDoc(documentRef);
-      if (documentSnapshot.exists()) {
-        this.singleContact = documentSnapshot.data() as IContact;
-      }
+      await this.contactsService.getSingleContact(contactID);
+      this.singleContact = this.contactsService.singleContact;
       this.loading = false;
     } catch (error) {
-      this.loading = false;
       this.errorMessage = error as Error;
+      this.loading = false;
     }
   }
 
   async getGroups() {
-    const documentRef = collection(this.firestore, 'groups');
-    const querySnapshot = await getDocs(documentRef);
-
-    this.contactGroups = querySnapshot.docs.map((item) => {
-      return { id: item.id, ...item.data() } as IGroup;
-    });
+    await this.contactsService.getGroups();
+    this.contactGroups = this.contactsService.contactGroups;
   }
 
   async editContact() {
-    const documentRef = doc(this.firestore, 'contacts/' + this.contactID);
     try {
-      await updateDoc(documentRef, { ...this.singleContact });
-      this.router.navigate(['/']);
+      this.contactsService.editContact(this.contactID);
     } catch (error) {
       this.errorMessage = error as Error;
     }
