@@ -27,6 +27,7 @@ import {
   getDoc,
   getDocs,
 } from '@angular/fire/firestore';
+import { ContactsService } from 'src/app/services/contacts.service';
 
 @Component({
   selector: 'app-single-contact',
@@ -34,7 +35,7 @@ import {
   styleUrls: ['./single-contact.component.scss'],
 })
 export class SingleContactComponent implements OnInit {
-  public contactID: string | null = null;
+  public contactParamID: string | null = null;
   public singleContact: IContact = {} as IContact;
   public contacts: IContact[] = [] as IContact[];
   public noUserPhoto: string =
@@ -59,18 +60,17 @@ export class SingleContactComponent implements OnInit {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private firestore: Firestore
+    private contactsService: ContactsService
   ) {}
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((param: ParamMap) => {
-      this.contactID = param.get('id');
+      this.contactParamID = param.get('id');
     });
 
-    if (this.contactID) {
-      this.getSingleContact(this.contactID);
+    if (this.contactParamID) {
+      this.getSingleContact(this.contactParamID);
       this.getContacts();
-      console.log('ON INIT');
     }
 
     this.router.events.subscribe((event) => {
@@ -81,54 +81,36 @@ export class SingleContactComponent implements OnInit {
   }
 
   async getContacts() {
-    const collectionRef = collection(this.firestore, 'contacts');
-
+    this.loading = true
     try {
-      this.loading = true;
-      const querySnapshot = await getDocs(collectionRef);
-      this.contacts = querySnapshot.docs.map((item) => {
-        return { id: item.id, ...item.data() } as IContact;
-      });
-      this.loading = false;
+      await this.contactsService.getContacts();
+      this.contacts = this.contactsService.contacts;
+      this.loading = false
     } catch (error) {
-      this.loading = false;
       this.errorMessage = error as Error;
+      this.loading = false
     }
   }
-
+  
   async getSingleContact(contactID: string) {
-    const documentRef = doc(this.firestore, 'contacts/' + contactID);
-
+    this.loading = true
     try {
-      this.loading = true;
-      const documentSnapshot = await getDoc(documentRef);
-
-      if (documentSnapshot.exists()) {
-        this.singleContact = documentSnapshot.data() as IContact;
-        this.loading = false;
-      }
-    } catch (error) {
-      this.loading = false;
+      await this.contactsService.getSingleContact(contactID);
+      this.singleContact = this.contactsService.singleContact;
+      
+    } catch(error) {
       this.errorMessage = error as Error;
+      this.loading = false
     }
   }
-
-  async deleteContact(id: string) {
-    const contactIndex = this.contacts.findIndex((item) => item.id === id);
-    const nextContactToLoad =
-      contactIndex > -1 &&
-      (this.contacts[contactIndex + 1] || this.contacts[contactIndex - 1]);
-
-    const documentRef = doc(this.firestore, 'contacts', id);
-    await deleteDoc(documentRef);
-
-    if (nextContactToLoad) {
-      this.router.navigateByUrl(`/contact/${nextContactToLoad.id}`);
-      this.contactID = nextContactToLoad.id;
-      this.getSingleContact(nextContactToLoad.id);
-      this.getContacts();
-    } else {
-      this.router.navigateByUrl('/contact');
+  
+  async deleteContact(contactID: string) {
+    try {
+      await this.contactsService.deleteContact(contactID);
+      
+    } catch(error) {
+      this.errorMessage = error as Error;
+      this.loading = false
     }
   }
 }
