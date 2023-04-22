@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   Firestore,
+  addDoc,
   deleteDoc,
   doc,
   getDoc,
@@ -37,6 +38,11 @@ export class ContactsService {
     if (documentSnapshot.exists()) {
       this.singleContact = documentSnapshot.data() as IContact;
     }
+  }
+
+  async addContact(newContact: IContact) {
+    const collectionRef = collection(this.firestore, 'contacts');
+    await addDoc(collectionRef, newContact);
   }
 
   async deleteContact(contactID: string): Promise<void> {

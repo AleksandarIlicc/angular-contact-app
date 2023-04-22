@@ -8,6 +8,7 @@ import {
 import { Router } from '@angular/router';
 import { IContact } from 'src/app/interfaces/IContact';
 import { IGroup } from 'src/app/interfaces/IGroup';
+import { ContactsService } from 'src/app/services/contacts.service';
 
 @Component({
   selector: 'app-new-contact',
@@ -18,7 +19,10 @@ export class NewContactComponent implements OnInit {
   public contactGroups: IGroup[] = [] as IGroup[];
   public isNotValidContact: string = '';
 
-  constructor(private firestore: Firestore, private router: Router) {}
+  constructor(
+    private contactsService: ContactsService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getGroups();
@@ -31,10 +35,8 @@ export class NewContactComponent implements OnInit {
   }
 
   async addContact() {
-    const collectionRef = collection(this.firestore, 'contacts');
-
     if (this.isIContact(this.newContact)) {
-      await addDoc(collectionRef, this.newContact);
+      await this.contactsService.addContact(this.newContact);
       this.router.navigate(['/']);
     } else {
       this.isNotValidContact =
@@ -43,11 +45,6 @@ export class NewContactComponent implements OnInit {
   }
 
   async getGroups() {
-    const documentRef = collection(this.firestore, 'groups');
-    const querySnapshot = await getDocs(documentRef);
-
-    this.contactGroups = querySnapshot.docs.map((item) => {
-      return { id: item.id, ...item.data() } as IGroup;
-    });
+    await this.contactsService.getGroups();
   }
 }
