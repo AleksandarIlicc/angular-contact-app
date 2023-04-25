@@ -1,4 +1,9 @@
 <section class="home section flex-container">
+  <app-search-box
+    [searchTerm]="searchTerm"
+    (searchTermChange)="onSearchTermChange($event)"
+  ></app-search-box>
+
   <h1 class="heading__primary">Contacts</h1>
 
   <div *ngIf="loading; then spinner; else contactsList"></div>

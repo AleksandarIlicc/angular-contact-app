@@ -1,0 +1,20 @@
+<!-- <input
+  type="text"
+  class="search-input"
+  [(ngModel)]="searchTerm"
+  (ngModelChange)="onInputChange($event)"
+  placeholder="search"
+/> -->
+
+<div class="input-field">
+  <input
+    type="text"
+    id="username"
+    name="username"
+    [(ngModel)]="searchTerm"
+    (ngModelChange)="onInputChange($event)"
+    spellcheck="false"
+    required=""
+  />
+  <label for="username">Search</label>
+</div>

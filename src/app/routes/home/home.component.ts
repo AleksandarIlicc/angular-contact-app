@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   public contact: IContact = {} as IContact;
   public loading: boolean = true;
   public errorMessage!: Error;
+  public searchTerm: string = '';
 
   constructor(
     private contactsService: ContactsService,
@@ -31,11 +32,22 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  onSearchTermChange(searchTerm: string) {
+    this.searchTerm = searchTerm;
+    this.getContacts();
+  }
+
   async getContacts() {
     this.loading = true;
     try {
       await this.contactsService.getContacts();
-      this.contacts = this.contactsService.contacts;
+      if (this.searchTerm) {
+        this.contacts = this.contactsService.contacts.filter((contact) =>
+          contact.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+        );
+      } else {
+        this.contacts = this.contactsService.contacts;
+      }
       this.loading = false;
     } catch (error) {
       this.loading = false;

@@ -18,6 +18,7 @@ import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { NewContactComponent } from './routes/new-contact/new-contact.component';
+import { SearchBoxComponent } from './components/search-box/search-box.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { NewContactComponent } from './routes/new-contact/new-contact.component'
     ContactListComponent,
     SpinnerComponent,
     NewContactComponent,
+    SearchBoxComponent,
   ],
   imports: [
     BrowserModule,
