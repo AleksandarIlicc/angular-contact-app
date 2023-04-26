@@ -3,8 +3,9 @@
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.5rem;
+  padding-top: 3rem;
   background-color: inherit;
 }
 .btnLoader span {

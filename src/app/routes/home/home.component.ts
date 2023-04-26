@@ -8,7 +8,7 @@ import { ContactsService } from 'src/app/services/contacts.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  styleUrls: [],
 })
 export class HomeComponent implements OnInit {
   public contacts: IContact[] = [] as IContact[];

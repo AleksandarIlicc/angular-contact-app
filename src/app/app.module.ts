@@ -12,13 +12,14 @@ import { SingleContactComponent } from './routes/single-contact/single-contact.c
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ContactListComponent } from './components/contact-list/contact-list.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { NewContactComponent } from './routes/new-contact/new-contact.component';
+import { SearchBoxComponent } from './components/search-box/search-box.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
-import { NewContactComponent } from './routes/new-contact/new-contact.component';
-import { SearchBoxComponent } from './components/search-box/search-box.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
     SpinnerComponent,
     NewContactComponent,
     SearchBoxComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
