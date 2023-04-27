@@ -1,0 +1,30 @@
+<ul class="contact__body">
+  <li class="contact__info">
+    <fa-icon [icon]="icons.faEnvelope" class="contact__icon"></fa-icon>
+    <span>
+      {{ contact.email }}
+    </span>
+  </li>
+  <li class="contact__info">
+    <fa-icon [icon]="icons.faPhoneAlt" class="contact__icon"></fa-icon>
+    <span>
+      {{ contact.mobile }}
+    </span>
+  </li>
+  <li class="contact__info">
+    <fa-icon [icon]="icons.faSuitcase" class="contact__icon"></fa-icon>
+    <span>{{ contact.title }}</span>
+  </li>
+  <li class="contact__info">
+    <fa-icon [icon]="icons.faLocationArrow" class="contact__icon"></fa-icon>
+    <span>{{ contact.address }}</span>
+  </li>
+  <li class="contact__info">
+    <fa-icon [icon]="icons.faBuilding" class="contact__icon"></fa-icon>
+    <span>{{ contact.company }}</span>
+  </li>
+  <li class="contact__info">
+    <fa-icon [icon]="icons.faUserFriends" class="contact__icon"></fa-icon>
+    <span>{{ contact.group }}</span>
+  </li>
+</ul>

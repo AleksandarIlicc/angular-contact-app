@@ -6,21 +6,9 @@ import {
   Router,
 } from '@angular/router';
 
-import { IContact } from 'src/app/interfaces/IContact';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-import {
-  faEnvelope,
-  faPhoneAlt,
-  faLocationArrow,
-  faBuilding,
-  faUserFriends,
-  faSuitcase,
-  faPencilAlt,
-  faEye,
-  faTimes,
-  faTrash,
-  faPlus,
-} from '@fortawesome/free-solid-svg-icons';
+import { IContact } from 'src/app/interfaces/IContact';
 
 import { ContactsService } from 'src/app/services/contacts.service';
 
@@ -37,19 +25,8 @@ export class SingleContactComponent implements OnInit {
     'https://icon-library.com/images/no-user-image-icon/no-user-image-icon-23.jpg';
   public loading: boolean = true;
   public errorMessage!: Error;
-
-  public icon = {
-    faEnvelope,
-    faPhoneAlt,
-    faLocationArrow,
-    faBuilding,
-    faUserFriends,
-    faSuitcase,
-    faPencilAlt,
-    faEye,
-    faTimes,
+  public icons = {
     faTrash,
-    faPlus,
   };
 
   constructor(

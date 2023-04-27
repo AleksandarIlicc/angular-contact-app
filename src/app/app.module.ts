@@ -9,19 +9,21 @@ import { HomeComponent } from './routes/home/home.component';
 import { EditComponent } from './routes/edit/edit.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { SingleContactComponent } from './routes/single-contact/single-contact.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
 import { ContactListComponent } from './components/contact-list/contact-list.component';
+import { ContactHeaderComponent } from './components/contact-header/contact-header.component';
+import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { NewContactComponent } from './routes/new-contact/new-contact.component';
 import { SearchBoxComponent } from './components/search-box/search-box.component';
 import { FooterComponent } from './components/footer/footer.component';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
-import { ContactHeaderComponent } from './components/contact-header/contact-header.component';
-import { ContactFormComponent } from './components/contact-form/contact-form.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { ContactFormComponent } from './components/contact-form/contact-form.com
     FooterComponent,
     ContactHeaderComponent,
     ContactFormComponent,
+    ContactDetailsComponent,
   ],
   imports: [
     BrowserModule,

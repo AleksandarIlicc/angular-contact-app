@@ -10,14 +10,6 @@
     padding: 1.2rem 0;
   }
 
-  &__body {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-    gap: 2rem;
-    margin-top: 5rem;
-    padding: 0 2rem;
-  }
-
   &__img {
     width: 10rem;
     height: 10rem;
@@ -44,21 +36,8 @@
     letter-spacing: 0.1rem;
   }
 
-  &__info {
-    margin-bottom: 2rem;
-
-    span {
-      margin-left: 2rem;
-    }
-  }
-
-  &__icon {
-    font-size: 2rem;
-    color: rgba(14, 191, 141, 0.9);
-
-    &--add {
-      margin-left: 2rem;
-    }
+  &__icon--add {
+    margin-left: 2rem;
   }
 
   &__list {
