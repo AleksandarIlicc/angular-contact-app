@@ -16,8 +16,6 @@ export class EditComponent implements OnInit {
   public contactGroups: IGroup[] = [] as IGroup[];
   public loading: boolean = true;
   public errorMessage!: Error;
-  public noUserPhoto: string =
-    'https://icon-library.com/images/no-user-image-icon/no-user-image-icon-23.jpg';
 
   constructor(
     private activatedRoute: ActivatedRoute,

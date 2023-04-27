@@ -20,6 +20,8 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { ContactHeaderComponent } from './components/contact-header/contact-header.component';
+import { ContactFormComponent } from './components/contact-form/contact-form.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
     NewContactComponent,
     SearchBoxComponent,
     FooterComponent,
+    ContactHeaderComponent,
+    ContactFormComponent,
   ],
   imports: [
     BrowserModule,

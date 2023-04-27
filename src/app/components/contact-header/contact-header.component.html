@@ -1,0 +1,16 @@
+<div
+  [ngStyle]="{
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: '4rem'
+  }"
+>
+  <figure class="edit-add__contact-img">
+    <img [src]="photo || noUserPhoto" alt="contact image" />
+  </figure>
+  <h2 [ngStyle]="{ color: 'rgb(255,255,255)' }">
+    {{ name }}
+  </h2>
+</div>
