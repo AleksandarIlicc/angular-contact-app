@@ -6,11 +6,9 @@
 
   <h1 class="heading__primary">Contacts</h1>
 
-  <div *ngIf="loading; then spinner; else contactsList"></div>
-
-  <ng-template #spinner>
+  <ng-container *ngIf="loading; else contactsList">
     <app-spinner></app-spinner>
-  </ng-template>
+  </ng-container>
 
   <ng-template #contactsList>
     <app-contact-list [contactsList]="contacts"></app-contact-list>
